@@ -23,6 +23,7 @@ setup(
     },
     extras_require={
         'dev': [
+            'pylint',
             'sphinx',
         ]
     },

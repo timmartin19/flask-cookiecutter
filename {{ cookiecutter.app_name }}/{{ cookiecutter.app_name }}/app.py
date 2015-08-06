@@ -10,7 +10,6 @@ import click
 from flask import Flask
 from flask_appconfig import AppConfig
 from flask.ext.migrate import Migrate, MigrateCommand
-from sphinx.application import Sphinx
 
 from .models import db
 
@@ -43,13 +42,13 @@ def db(ctx):
 
 
 @cli.command()
-@click.pass_context
-def docs(ctx):
+def docs():
     docs_index = _run_sphinx(build='html')
     webbrowser.open(docs_index)
 
 
 def _run_sphinx(build='html'):
+    from sphinx.cmdline import Sphinx
     src_dir = _get_docs_src_dir()
     build_dir = _get_docs_base_dir()
     app = Sphinx(src_dir, src_dir, build_dir, src_dir, build)
@@ -87,6 +86,30 @@ def autodoc(ctx):
     api_dir = os.path.join(src_dir, 'API')
     base_dir = os.path.join(_get_base_dir(), '{{ cookiecutter.app_name }}')
     os.system('sphinx-apidoc -o {0} {1}'.format(api_dir, base_dir))
+
+
+@cli.command()
+def pylint():
+    from pylint.lint import Run
+    Run(['{{ cookiecutter.app_name }}'])
+
+
+@cli.command()
+@click.pass_context
+def test_all(ctx):
+    raise NotImplementedError
+
+
+@cli.command()
+@click.pass_context
+def test(ctx):
+    raise NotImplementedError
+
+
+@cli.command()
+@click.pass_context
+def unittest(ctx):
+    raise NotImplementedError
 
 
 @cli.command()
