@@ -96,8 +96,3 @@ def autodoc(ctx):
 @click.pass_context
 def doctest(ctx):
     _run_sphinx('doctest')
-
-
-@manager.command
-def runserver():
-    raise NotImplementedError
