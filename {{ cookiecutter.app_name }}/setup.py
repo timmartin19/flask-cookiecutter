@@ -28,6 +28,7 @@ setup(
     },
     keywords='Flask Web',
     install_requires=[
+        'click',
         'flask',
         'Flask-AppConfig',
         'Flask-Migrate',
