@@ -7,16 +7,13 @@ import webbrowser
 import os
 
 import click
-
 from flask import Flask
 from flask_appconfig import AppConfig
-from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 from sphinx.application import Sphinx
 
 from .models import db
 
-manager = Manager(usage="{{ cookiecutter.app_name }} easy commands")
 migrate = Migrate()
 
 
