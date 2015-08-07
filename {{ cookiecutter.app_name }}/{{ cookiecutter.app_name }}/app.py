@@ -89,30 +89,33 @@ def autodoc(ctx):
 
 
 @cli.command()
+def doctest():
+    _run_sphinx('doctest')
+
+
+@cli.command()
 def pylint():
     from pylint.lint import Run
     Run(['{{ cookiecutter.app_name }}'])
 
 
 @cli.command()
-@click.pass_context
-def test_all(ctx):
-    raise NotImplementedError
+def test_all():
+    pylint()
+    doctest()
+    test()
 
 
 @cli.command()
-@click.pass_context
-def test(ctx):
-    raise NotImplementedError
+def test():
+    base_dir = _get_base_dir()
+    setup = os.path.join(base_dir, 'setup.py')
+    os.system('python {0} test'.format(base_dir))
 
 
 @cli.command()
 @click.pass_context
 def unittest(ctx):
-    raise NotImplementedError
-
-
-@cli.command()
-@click.pass_context
-def doctest(ctx):
-    _run_sphinx('doctest')
+    base_dir = _get_base_dir()
+    unittests = os.path.join(base_dir, '{{ cookiecutter.app_name }}_tests', 'unit')
+    os.system('python -m unittest discover "{0}"'.format(unittests))
