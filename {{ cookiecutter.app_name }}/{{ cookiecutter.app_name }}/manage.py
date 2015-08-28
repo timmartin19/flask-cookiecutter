@@ -11,7 +11,8 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 from flask_appconfig import AppConfig
 
-from .models import db
+from {{ cookiecutter.app_name }}.app import {{ cookiecutter.app_name }}_blueprint
+from {{ cookiecutter.app_name }}.models import db
 
 
 def create_app(config=None):
@@ -27,6 +28,7 @@ def create_app(config=None):
     AppConfig(app, config)
     db.init_app(app)
     MIGRATE.init_app(app, db, directory=_MIGRATIONS_DIR)
+    app.register_blueprint({{ cookiecutter.app_name }}_blueprint)
     return app
 
 
@@ -61,6 +63,7 @@ def start_manager():
 
 @MANAGER.command
 def docs():
+    """Generates the documentation via sphinx and opens them in your browser"""
     docs_index = _run_sphinx(build='html')
     webbrowser.open(docs_index)
 

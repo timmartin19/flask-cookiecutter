@@ -1,5 +1,8 @@
 recursive-include {{ cookiecutter.app_name }}/templates *
 recursive-include {{ cookiecutter.app_name }}/static *
 recursive-include {{ cookiecutter.app_name }}/migrations *
+recursive-include docs/source *
+include docs/make.bat
+include docs/Makefile
 include README.rst
 include CHANGELOG.rst
