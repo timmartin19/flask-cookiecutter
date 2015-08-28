@@ -27,6 +27,7 @@ def create_app(config=None):
     AppConfig(app, config)
     db.init_app(app)
     MIGRATE.init_app(app, db, directory=_MIGRATIONS_DIR)
+    return app
 
 
 _BASE_DIR = os.path.dirname(__file__)
