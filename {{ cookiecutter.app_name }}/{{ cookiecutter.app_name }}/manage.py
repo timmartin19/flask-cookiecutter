@@ -26,6 +26,7 @@ def create_app(config=None):
     app = Flask('{{ cookiecutter.app_name }}')
     AppConfig(app, config)
     db.init_app(app)
+    MIGRATE.init_app(app, db, directory=_MIGRATIONS_DIR)
 
 
 _BASE_DIR = os.path.dirname(__file__)
@@ -96,7 +97,7 @@ def _get_docs_base_dir():
 
 
 @MANAGER.command
-def autodoc(ctx):
+def autodoc():
     src_dir = _get_docs_src_dir()
     api_dir = os.path.join(src_dir, 'API')
     base_dir = os.path.join(_get_base_dir(), '{{ cookiecutter.app_name }}')
@@ -129,7 +130,7 @@ def test():
 
 
 @MANAGER.command
-def unittest(ctx):
+def unittest():
     base_dir = _get_base_dir()
     unittests = os.path.join(base_dir, '{{ cookiecutter.app_name }}_tests', 'unit')
     os.system('python -m unittest discover "{0}"'.format(unittests))
