@@ -18,7 +18,7 @@ setup(
     description="{{ cookiecutter.description }}",
     entry_points={
         'console_scripts': [
-            'runserver = {{ cookiecutter.app_name }}.app:runserver',
+            '{{ cookiecutter.app_name }} = {{ cookiecutter.app_name }}.manage:start_manager',
         ]
     },
     extras_require={
@@ -29,7 +29,6 @@ setup(
     },
     keywords='Flask Web',
     install_requires=[
-        'click',
         'flask',
         'Flask-AppConfig',
         'Flask-Migrate',

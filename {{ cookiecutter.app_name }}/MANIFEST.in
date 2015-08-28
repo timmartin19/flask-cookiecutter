@@ -1,4 +1,5 @@
-recursive-include {{ cookiecutter.app_name }}/templates*
-recursive-include {{ cookiecutter.app_name }}/static*
+recursive-include {{ cookiecutter.app_name }}/templates *
+recursive-include {{ cookiecutter.app_name }}/static *
+recursive-include {{ cookiecutter.app_name }}/migrations *
 include README.rst
 include CHANGELOG.rst
