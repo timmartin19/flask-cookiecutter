@@ -13,3 +13,9 @@ cd into the root directory of the project and run the following.
 
     pip install -e .[dev]
 
+Then copy the dev.py.example file to dev.py
+
+.. code-block:: sh
+
+    cp config/dev.py.example config/dev.py
+
