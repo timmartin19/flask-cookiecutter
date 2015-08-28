@@ -1,3 +1,5 @@
 {
-
+  "app_name": "myapp",
+  "author": "My Name",
+  "description": "This is my app it does..."
 }
