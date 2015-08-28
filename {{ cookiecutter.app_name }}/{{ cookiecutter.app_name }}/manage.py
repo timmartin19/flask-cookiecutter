@@ -113,21 +113,21 @@ def doctest():
 @MANAGER.command
 def pylint():
     from pylint.lint import Run
-    Run(['{{ cookiecutter.app_name }}'])
+    Run(['{{ cookiecutter.app_name }}', '--rcfile', os.path.join(_get_base_dir(), 'pylintrc')])
 
 
 @MANAGER.command
 def test_all():
-    pylint()
-    doctest()
     test()
+    doctest()
+    pylint()
 
 
 @MANAGER.command
 def test():
     base_dir = _get_base_dir()
     setup = os.path.join(base_dir, 'setup.py')
-    os.system('python {0} test'.format(base_dir))
+    os.system('python {0} test'.format(setup))
 
 
 @MANAGER.command

@@ -1,5 +1,6 @@
 {
   "app_name": "myapp",
   "author": "My Name",
+  "author_email": "something@something.com",
   "description": "This is my app it does..."
 }
