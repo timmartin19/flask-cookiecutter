@@ -1,5 +1,5 @@
 {{ cookiecutter.app_name }}
-===========================
+{% character in cookiecutter.app_name %}={% endfor %}
 
 {{ cookiecutter.app_description }}
 
