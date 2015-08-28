@@ -13,6 +13,7 @@ from flask_appconfig import AppConfig
 
 from .models import db
 
+
 def create_app(config=None):
     """
     Creates a Flask instance ready for use
