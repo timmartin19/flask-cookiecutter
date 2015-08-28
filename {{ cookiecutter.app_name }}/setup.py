@@ -46,4 +46,5 @@ setup(
         'unittest2',
     ],
     test_suite="{{ cookiecutter.app_name }}_tests",
+    version=version
 )
