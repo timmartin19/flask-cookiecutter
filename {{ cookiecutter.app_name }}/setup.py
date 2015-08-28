@@ -38,7 +38,7 @@ setup(
     packages=find_packages(
         include=[
             "{{ cookiecutter.app_name }}",
-            "{{ cookiecutter.app_name.* }}"
+            "{{ cookiecutter.app_name }}.*"
         ]
     ),
     tests_require=[
