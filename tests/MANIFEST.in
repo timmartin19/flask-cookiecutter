@@ -1,5 +1,0 @@
-recursive-include /templates *
-recursive-include /static *
-recursive-include /migrations *
-include README.rst
-include CHANGELOG.rst
