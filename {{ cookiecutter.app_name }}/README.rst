@@ -1,7 +1,7 @@
 {{ cookiecutter.app_name }}
 {% for character in cookiecutter.app_name %}={% endfor %}
 
-{{ cookiecutter.app_description }}
+{{ cookiecutter.description }}
 
 Installation
 ------------
