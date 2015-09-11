@@ -17,3 +17,4 @@ I would like to acknowledge `Alex Maskovyak <https://github.com/AlexMaskovyak>`_
 Vagrantfile and creating the `nodes.json` paradigm for creationg of virtual machines
 
 Also the contributors of the `postgres formula <https://github.com/saltstack-formulas/postgres-formula>`_.
+and `nginx forumla <https://github.com/saltstack-formulas/nginx-formula>`_.
