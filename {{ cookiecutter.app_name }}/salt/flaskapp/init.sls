@@ -1,5 +1,4 @@
-{% raw %}
-{% from "flaskapp/map.jinja" import app, common with context %}
+{% raw %}{% from "flaskapp/map.jinja" import app, common with context %}
 
 # Install the basic
 python-pkgs:
@@ -18,14 +17,18 @@ create-virtualenv:
     - require:
       - pkg: python-pkgs
 
-  # Upgrade pip and setuptools since they are very low versions
+  # Upgrade pip and setuptools since they are very old versions by default
   pip.installed:
-    - pkgs:
-      - setuptools>=18
-      - pip>=7
-    - index_url: {{ app.pypi_index }}
-    - bin_env: {{ app.virtualenvdir }}
-    - require:
-      - virtualenv: create_virtualenv
+    - names:
+      - setuptools
+      - pip
+    {% if app.pypi_index %}- index_url: {{ app.pypi_index }}{% endif %}
     - user: {{ common.user }}
+    - bin_env: {{ app.virtualenvdir }}
+    #- upgrade: True
+    - use_vt: True
+    - upgrade: True
+    - require:
+      - virtualenv: create-virtualenv
+      - pkg: python-pkgs
 {% endraw %}

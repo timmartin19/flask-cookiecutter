@@ -1,4 +1,4 @@
-app:
+flaskapp:
   config_file: '/home/{{ cookiecutter.vagrant_user }}/{{ cookiecutter.app_name }}/config.py'
   deployment_root: '/home/{{ cookiecutter.vagrant_user }}/{{ cookiecutter.app_name }}'
   logdir: /var/log/{{ cookiecutter.app_name }}

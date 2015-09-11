@@ -5,6 +5,6 @@
   "database_user": "vagrant",
   "database_password": "password",
   "description": "This is my app it does...",
-  "pypi_index": "https://pypi.python.org/",
+  "pypi_index": "",
   "vagrant_user": "vagrant"
 }
