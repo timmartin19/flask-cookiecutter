@@ -1,3 +1,4 @@
-{% set app = salt['pillar.get']('flaskapp') %}
+{% raw %}{% set app = salt['pillar.get']('flaskapp') %}
 
 {% set common = salt['pillar.get']('common') %}
+{% endraw %}
