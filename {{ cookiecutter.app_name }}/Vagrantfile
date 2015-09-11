@@ -1,0 +1,75 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Archivist Multi-VM Configuration:
+# Builds Application and Database Servers using JSON config file.
+# configures VMs based on SaltStack provisioner.
+# Author: Alex Maskovyak
+#
+# requires plugins:
+# - vagrant-hostmanager
+#
+
+require 'etc'
+
+# Vagrantfile API/syntax version.
+VAGRANTFILE_API_VERSION = "2"
+
+def read_node_config()
+  nodes = (JSON.parse(File.read("nodes.json")))['nodes']
+  return nodes
+end
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  nodes_config = read_node_config()
+
+  config.vm.box = "ubuntu/trusty64"
+
+  # configure hostnames
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
+  nodes_config.each do |node_config|
+    node_name = node_config[':node']
+
+    config.vm.define node_name do |node|
+      # Hardware
+      node.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", node_config[':memory']]
+        vb.customize ["modifyvm", :id, "--cpus", node_config[':cpus']]
+        vb.customize ["modifyvm", :id, "--name", node_config[':node']]
+      end
+
+      # Network
+      node.vm.hostname = node_config[':hostname']
+      node.vm.network :private_network, ip: node_config[':ip']
+
+      # configures all forwarding ports
+      ports = node_config['ports']
+      ports.each do |port|
+        node.vm.network :forwarded_port, host: port[':host'], guest: port[':guest'], id: port[':id'], auto_correct: true
+      end
+
+      # Provision
+
+      # Share for masterless server
+      node.vm.synced_folder "salt", "/srv/salt"
+      node.vm.synced_folder "pillar", "/srv/pillar"
+
+      # make minion masterless
+      config.vm.provision "shell",
+        inline: "mkdir -p /etc/salt/minion.d && echo file_client: local >> /etc/salt/minion.d/masterless.conf"
+
+      node.vm.provision :salt do |salt|
+        #salt.minion_config = "salt/minion.conf" # Configure minion
+        salt.verbose = true                     # Show install output
+        salt.colorize = true
+        salt.run_highstate = true               # Run the highstate on start
+        salt.install_type = "git"               # Get from git
+        salt.install_args = "v2014.7"           # Install a well-known version where pillars actually work (broken in 2014.1.11), use "daily" and remove "install_type" to revert to latest
+      end
+    end
+  end
+end

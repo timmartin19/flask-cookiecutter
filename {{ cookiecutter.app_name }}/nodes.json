@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {
+      ":node": "{{ cookiecutter.app_name }}0.dev",
+      ":hostname": "{{ cookiecutter.app_name }}0.dev",
+      ":memory": 256,
+      ":cpus": 2,
+      ":ip": "192.168.56.111",
+      "ports": [
+        {
+          ":host": 2201,
+          ":guest": 22,
+          ":id": "ssh"
+        }
+      ]
+    }
+  ]
+}
