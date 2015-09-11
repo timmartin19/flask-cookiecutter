@@ -1,4 +1,4 @@
-# nginx.ng
+{% raw %}# nginx.ng
 #
 # Meta-state to fully install nginx.
 
@@ -19,3 +19,4 @@ extend:
     file:
       - require:
         - pkg: nginx_install
+{% endraw %}

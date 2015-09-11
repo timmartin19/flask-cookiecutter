@@ -1,4 +1,4 @@
-{% set logger_types = ('access', 'error') %}
+{% raw %}{% set logger_types = ('access', 'error') %}
 
 {% for log_type in logger_types %}
 /var/log/nginx/{{ log_type }}.log:
@@ -26,3 +26,4 @@ nginx-logger-{{ log_type }}:
 
 /etc/logrotate.d/nginx:
   file.absent
+{% endraw %}

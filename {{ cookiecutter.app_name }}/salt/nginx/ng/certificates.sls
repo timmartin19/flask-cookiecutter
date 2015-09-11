@@ -1,4 +1,4 @@
-include:
+{% raw %}include:
   - nginx.ng.service
 
 {%- for domain in salt['pillar.get']('nginx:ng:certificates', {}).keys() %}
@@ -21,3 +21,4 @@ nginx_{{ domain }}_ssl_key:
       - service: nginx_service
 
 {%- endfor %}
+{% endraw %}

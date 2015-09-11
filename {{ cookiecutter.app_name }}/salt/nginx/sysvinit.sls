@@ -1,4 +1,4 @@
-{% set nginx = pillar.get('nginx', {}) -%}
+{% raw %}{% set nginx = pillar.get('nginx', {}) -%}
 {% set log_dir = nginx.get('log_dir', '/var/log/nginx') -%}
 
 {% set logger_types = ('access', 'error') %}
@@ -32,3 +32,4 @@ nginx-logger-{{ log_type }}:
 
 /etc/logrotate.d/nginx:
   file.absent
+{% endraw %}

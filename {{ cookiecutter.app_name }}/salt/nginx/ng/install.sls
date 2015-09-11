@@ -1,4 +1,4 @@
-# nginx.ng.install
+{% raw %}# nginx.ng.install
 #
 # Manages installation of nginx.
 
@@ -70,3 +70,4 @@ nginx_yum_repo:
     - watch_in:
       - pkg: nginx_install
 {% endif %}
+{% endraw %}

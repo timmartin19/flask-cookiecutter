@@ -1,4 +1,4 @@
-{% set nginx = pillar.get('nginx', {}) -%}
+{% raw %}{% set nginx = pillar.get('nginx', {}) -%}
 {% set home = nginx.get('home', '/var/www') -%}
 {% set source = nginx.get('source_root', '/usr/local/src') -%}
 
@@ -14,3 +14,4 @@ get-luajit2:
       - file: get-luajit2
     - require_in:
       - cmd: nginx
+{% endraw %}

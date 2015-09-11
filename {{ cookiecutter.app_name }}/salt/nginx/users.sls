@@ -1,4 +1,4 @@
-{% from "nginx/map.jinja" import nginx with context %}
+{% raw %}{% from "nginx/map.jinja" import nginx with context %}
 {% set htauth = nginx.get('htpasswd', '/etc/nginx/.htpasswd') -%}
 
 htpasswd:
@@ -19,3 +19,4 @@ nginx_user_{{name}}:
 
 {% endif -%}
 {% endfor %}
+{% endraw %}

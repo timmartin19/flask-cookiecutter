@@ -1,4 +1,4 @@
-{% set nginx = pillar.get('nginx', {}) -%}
+{% raw %}{% set nginx = pillar.get('nginx', {}) -%}
 # defaults passed via context from the map.jinja
 {% set user = nginx.get('user', default_user) -%}
 {% set group = nginx.get('group', default_group) -%}
@@ -77,3 +77,4 @@ http {
     include /etc/nginx/conf.d/*.conf;
     include /etc/nginx/sites-enabled/*.conf;
 }
+{% endraw %}

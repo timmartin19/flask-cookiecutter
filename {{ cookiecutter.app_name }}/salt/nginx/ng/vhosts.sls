@@ -1,4 +1,4 @@
-# nginx.ng.vhosts
+{% raw %}# nginx.ng.vhosts
 #
 # Manages virtual hosts and their relationship to the nginx service.
 
@@ -29,3 +29,4 @@ nginx_service_reload:
       {{ file_requisites(vhost_states) }}
       - service: nginx_service
 {% endif %}
+{% endraw %}

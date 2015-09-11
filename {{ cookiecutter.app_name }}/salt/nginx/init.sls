@@ -1,4 +1,4 @@
-{% from "nginx/map.jinja" import nginx as nginx_map with context %}
+{% raw %}{% from "nginx/map.jinja" import nginx as nginx_map with context %}
 
 include:
   - nginx.common
@@ -16,3 +16,4 @@ include:
   - nginx.package
 {% endif -%}
 
+{% endraw %}

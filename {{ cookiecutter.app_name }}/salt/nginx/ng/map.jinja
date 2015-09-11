@@ -1,4 +1,4 @@
-{% macro sls_block(dict) %}
+{% raw %}{% macro sls_block(dict) %}
     {% for key, value in dict.items() %}
     - {{ key }}: {{ value|json() }}
     {% endfor %}
@@ -116,4 +116,4 @@
     'pid': nginx.lookup.pid_file,
 })%}
 {% endif %}
-
+{% endraw %}

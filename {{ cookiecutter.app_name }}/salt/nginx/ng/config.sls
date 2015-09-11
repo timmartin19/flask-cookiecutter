@@ -1,4 +1,4 @@
-# nginx.ng.config
+{% raw %}# nginx.ng.config
 #
 # Manages the main nginx server configuration file.
 
@@ -12,3 +12,4 @@ nginx_config:
     - template: jinja
     - context:
         config: {{ nginx.server.config|json() }}
+{% endraw %}

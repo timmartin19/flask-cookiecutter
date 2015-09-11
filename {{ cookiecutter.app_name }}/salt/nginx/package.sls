@@ -1,4 +1,4 @@
-{% from "nginx/map.jinja" import nginx with context %}
+{% raw %}{% from "nginx/map.jinja" import nginx with context %}
 {% set use_upstart = salt['pillar.get']('nginx:use_upstart', nginx['use_upstart']) %}
 {% if use_upstart %}
 nginx-old-init:
@@ -125,3 +125,4 @@ nginx:
     - target: /lib/init/upstart-job
     - force: True
 {% endif %}
+{% endraw %}

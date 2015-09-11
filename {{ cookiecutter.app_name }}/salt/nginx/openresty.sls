@@ -1,4 +1,4 @@
-{% set nginx = pillar.get('nginx', {}) -%}
+{% raw %}{% set nginx = pillar.get('nginx', {}) -%}
 {% set home = nginx.get('home', '/var/www') -%}
 {% set source = nginx.get('source_root', '/usr/local/src') -%}
 
@@ -29,3 +29,4 @@ install_openresty:
       - make && make install
     - watch:
       - cmd: get-openresty
+{% endraw %}

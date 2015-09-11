@@ -1,4 +1,4 @@
-{% set nginx = salt['grains.filter_by']({
+{% raw %}{% set nginx = salt['grains.filter_by']({
     'Debian': {
         'apache_utils': 'apache2-utils',
         'group_action': 'pkg.installed',
@@ -42,3 +42,4 @@
         'make_flags': '-j2'
     },
 }, grain='os_family', merge=salt['pillar.get']('nginx:lookup'), default='Debian') %}
+{% endraw %}

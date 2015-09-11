@@ -1,4 +1,4 @@
-# {{ pillar.get('message_do_not_modify', '') }}
+{% raw %}# {{ pillar.get('message_do_not_modify', '') }}
 # startup script for Nginx loggers
 
 start on starting nginx
@@ -18,3 +18,4 @@ end script
 emits nginx-logger-{{ type }}
 
 exec logger -f /var/log/nginx/{{ type }}.fifo -t nginx -p {% if type == 'error' %}warn{% else %}debug{% endif %}
+{% endraw %}

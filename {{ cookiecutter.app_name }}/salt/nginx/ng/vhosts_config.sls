@@ -1,4 +1,4 @@
-# nginx.ng.vhosts_config
+{% raw %}# nginx.ng.vhosts_config
 #
 # Manages the configuration of virtual host files.
 
@@ -109,3 +109,4 @@ nginx_vhost_available_dir:
 {% do vhost_states.append(status_state_id) %}
 {% endif %}
 {% endfor %}
+{% endraw %}

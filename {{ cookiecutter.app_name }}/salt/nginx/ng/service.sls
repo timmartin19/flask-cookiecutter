@@ -1,4 +1,4 @@
-# nginx.ng.service
+{% raw %}# nginx.ng.service
 #
 # Manages the nginx service.
 
@@ -19,3 +19,4 @@ nginx_service:
       {% if not nginx.install_from_source %}
       - pkg: nginx_install
       {% endif %}
+{% endraw %}

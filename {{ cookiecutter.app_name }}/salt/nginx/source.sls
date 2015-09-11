@@ -1,4 +1,4 @@
-{% from "nginx/map.jinja" import nginx as nginx_map with context %}
+{% raw %}{% from "nginx/map.jinja" import nginx as nginx_map with context %}
 
 {% set nginx = pillar.get('nginx', {}) -%}
 {% set use_sysvinit = nginx.get('use_sysvinit', nginx_map['use_sysvinit']) %}
@@ -271,3 +271,4 @@ nginx:
     - require_in:
       - service: nginx
 {% endfor %}
+{% endraw %}
