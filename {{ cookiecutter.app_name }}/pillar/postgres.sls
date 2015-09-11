@@ -10,8 +10,8 @@ postgres:
     pg_hba: '/etc/postgresql/9.3/main/pg_hba.conf'
 
   users:
-    {% cookiecutter.database_user %}:
-      password: '{% cookiecutter.database_password %}'
+    {{ cookiecutter.database_user }}:
+      password: '{{ cookiecutter.database_password }}'
       createdb: True
       createroles: True
       createuser: True
@@ -25,9 +25,9 @@ postgres:
     - ['host', 'db2', 'remoteUser', '123.123.0.0/24']
 
   databases:
-    {% cookiecutter.app_name %}:
-      owner: '{% cookiecutter.database_user %}'
-      user: '{% cookiecutter.database_user %}'
+    {{ cookiecutter.app_name }}:
+      owner: '{{ cookiecutter.database_user }}'
+      user: '{{ cookiecutter.database_user }}'
       template: 'template0'
       lc_ctype: 'C.UTF-8'
       lc_collate: 'C.UTF-8'
