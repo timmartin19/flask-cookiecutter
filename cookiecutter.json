@@ -2,5 +2,9 @@
   "app_name": "myapp",
   "author": "My Name",
   "author_email": "something@something.com",
-  "description": "This is my app it does..."
+  "database_user": "vagrant",
+  "database_password": "password",
+  "description": "This is my app it does...",
+  "pypi_index": "https://pypi.python.org/",
+  "vagrant_user": "vagrant"
 }
