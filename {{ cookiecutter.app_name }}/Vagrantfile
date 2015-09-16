@@ -68,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         salt.colorize = true
         salt.run_highstate = true               # Run the highstate on start
         salt.install_type = "git"               # Get from git
-        salt.install_args = "v2014.7"           # Install a well-known version where pillars actually work (broken in 2014.1.11), use "daily" and remove "install_type" to revert to latest
+        salt.install_args = "v2015.5.5"           # Install a well-known version where pillars actually work (broken in 2014.1.11), use "daily" and remove "install_type" to revert to latest
       end
     end
   end

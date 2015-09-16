@@ -3,7 +3,15 @@
 
 htpasswd:
   pkg.installed:
-    - name: {{ nginx.apache_utils }}
+    - name: apache2-utils
+
+nginx-fonts:
+  pkg.installed:
+    - name: ttf-bitstream-vera
+    - require:
+      - pkg: htpasswd
+    - require_in:
+      - pkg: nginx
 
 {% for name, user in pillar.get('users', {}).items() %}
 {% if user['webauth'] is defined -%}

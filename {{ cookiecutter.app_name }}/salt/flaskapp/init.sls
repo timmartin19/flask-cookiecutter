@@ -22,6 +22,7 @@ create-virtualenv:
     - names:
       - setuptools
       - pip
+      - uwsgi
     {% if app.pypi_index %}- index_url: {{ app.pypi_index }}{% endif %}
     - user: {{ common.user }}
     - bin_env: {{ app.virtualenvdir }}
@@ -31,4 +32,14 @@ create-virtualenv:
     - require:
       - virtualenv: create-virtualenv
       - pkg: python-pkgs
+
+  {{ cookiecutter.app_name }}-wsgi:
+    file.managed:
+      - name: {{ app.config_file }}
+      - source: salt://flaskapp/templates/wsgi.jinja
+      - template: jinja
+      - user: {{ common.user }}
+      - context:
+        config_file: {{ config_file }}
+
 {% endraw %}
