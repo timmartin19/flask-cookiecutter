@@ -7,3 +7,5 @@ flaskapp:
   package: {{ cookiecutter.app_name }}
   pypi_index: {{ cookiecutter.pypi_index }}
   virtualenvdir: '/home/{{ cookiecutter.vagrant_user }}/{{ cookiecutter.app_name }}/env'
+  wsgi_file: '/home/{{ cookiecutter.vagrant_user }}/{{ cookiecutter.app_name }}/wsgi.py'
+  wsig_ini: '/home/{{ cookiecutter.vagrant_user }}{{ cookiecutter.app_name }}/{{ cookiecutter.app_name }}_uswgi.ini
