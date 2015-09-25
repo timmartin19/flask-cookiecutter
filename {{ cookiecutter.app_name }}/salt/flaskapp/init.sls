@@ -20,6 +20,7 @@ create-virtualenv:
   # Upgrade pip and setuptools since they are very old versions by default
   pip.installed:
     - names:
+      - pyOpenSSL
       - setuptools
       - pip
       - uwsgi
@@ -33,14 +34,14 @@ create-virtualenv:
       - virtualenv: create-virtualenv
       - pkg: python-pkgs
 
-{{ cookiecutter.app_name }}-wsgi:
+{{ app.name }}-wsgi:
   file.managed:
     - name: {{ app.config_file }}
     - source: salt://flaskapp/templates/wsgi.jinja
     - template: jinja
     - user: {{ common.user }}
     - context:
-      config_file: {{ config_file }}
+      config_file: {{ app.config_file }}
 
 wsgi-upstart-conf:
   file.managed:
