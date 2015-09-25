@@ -8,6 +8,8 @@ python-pkgs:
       - python-dev
       - python-pip
       - python-virtualenv
+      - libxml2-dev
+      - libxslt1-dev
 
 # Create a virtualenv to install the packages in.
 create-virtualenv:
