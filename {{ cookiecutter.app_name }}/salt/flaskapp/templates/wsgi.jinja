@@ -1,6 +1,7 @@
 {% raw %}from myapp.manage import create_app
 
+application = create_app(config="{{ config_file }}")
 
 if __name__ == "__main__":
-    create_app(config="{{ config_file }}")
+    application.run()
 {% endraw %}

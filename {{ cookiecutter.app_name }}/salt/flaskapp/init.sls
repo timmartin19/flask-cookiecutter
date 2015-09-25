@@ -38,7 +38,7 @@ create-virtualenv:
 
 {{ app.name }}-wsgi:
   file.managed:
-    - name: {{ app.config_file }}
+    - name: {{ app.wsgi_file }}
     - source: salt://flaskapp/templates/wsgi.jinja
     - template: jinja
     - user: {{ common.user }}
@@ -56,6 +56,17 @@ wsgi-upstart-conf:
       user: {{ common.user }}
       project_dir: {{ app.deployment_root }}
       uwsgi_ini: {{ app.wsgi_ini }}
+
+
+
+install-package:
+  pip.installed:
+    - editable: '/vagrant'
+    - user: {{ common.user }}
+    - use_vt: True
+    - require:
+      - pip: create-virtualenv
+    - bin_env: {{ app.virtualenvdir }}
 
 
 {% endraw %}

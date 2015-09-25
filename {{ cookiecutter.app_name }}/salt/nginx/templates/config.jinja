@@ -65,6 +65,10 @@ http {
             access_log off;
             allow all;
         }
+        location / {
+            include uwsgi_params;
+            uwsgi_pass unix:/home/vagrant/myapp/myapp.sock;
+        }
     }
 {% if pillar['nginx'] is defined -%}
 {% if pillar['nginx']['redirect_numeric_ip']|default(False) -%}
