@@ -54,10 +54,12 @@ http {
     gzip_disable "{{ nginx.get('gzip_disable', 'msie6') }}";
 
     # turn on nginx_status on localhost
-    {# TODO: Finish this #}
+
+    {# TODO: Finish the damned listen shit #}
     server {
-        listen 127.0.0.1:80;
-        server_name 127.0.0.1;
+        listen 192.168.56.111:80;
+
+        server_name localhost;
         location /nginx_status {
             stub_status on;
             access_log off;
