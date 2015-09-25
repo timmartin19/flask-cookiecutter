@@ -3,7 +3,7 @@
     {
       ":node": "{{ cookiecutter.app_name }}0.dev",
       ":hostname": "{{ cookiecutter.app_name }}0.dev",
-      ":memory": 256,
+      ":memory": 1024,
       ":cpus": 2,
       ":ip": "192.168.56.111",
       "ports": [
