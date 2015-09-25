@@ -33,13 +33,26 @@ create-virtualenv:
       - virtualenv: create-virtualenv
       - pkg: python-pkgs
 
-  {{ cookiecutter.app_name }}-wsgi:
-    file.managed:
-      - name: {{ app.config_file }}
-      - source: salt://flaskapp/templates/wsgi.jinja
-      - template: jinja
-      - user: {{ common.user }}
-      - context:
-        config_file: {{ config_file }}
+{{ cookiecutter.app_name }}-wsgi:
+  file.managed:
+    - name: {{ app.config_file }}
+    - source: salt://flaskapp/templates/wsgi.jinja
+    - template: jinja
+    - user: {{ common.user }}
+    - context:
+      config_file: {{ config_file }}
+
+wsgi-upstart-conf:
+  file.managed:
+    - name: {{ app.upstart_conf }}
+    - souce: salt://flaskapp/templates/usptartconf.jinja
+    - template: jinja
+    - user: {{ common.user }}
+    - context:
+      virtualenvdrc: {{ app.virtualenvdir }}
+      user: {{ common.user }}
+      project_dir: {{ app.deployment_root }}
+      uwsgi_ini: {{ app.wsgi_ini }}
+
 
 {% endraw %}

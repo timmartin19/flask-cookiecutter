@@ -11,7 +11,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 from flask_appconfig import AppConfig
 
-from {{ cookiecutter.app_name }}.app import {{ cookiecutter.app_name }}_blueprint
+from {{ cookiecutter.app_name }}.views import {{ cookiecutter.app_name }}_bp
 from {{ cookiecutter.app_name }}.models import db
 
 
@@ -28,7 +28,7 @@ def create_app(config=None):
     AppConfig(app, config)
     db.init_app(app)
     MIGRATE.init_app(app, db, directory=_MIGRATIONS_DIR)
-    app.register_blueprint({{ cookiecutter.app_name }}_blueprint)
+    app.register_blueprint({{ cookiecutter.app_name }}_bp)
     return app
 
 

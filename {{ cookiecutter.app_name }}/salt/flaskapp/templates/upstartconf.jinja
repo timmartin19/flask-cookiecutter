@@ -1,0 +1,12 @@
+description "uWSGI server instance to server {{ cookiecutter.app_name }}"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+{% raw %}
+setuid {{ user }}
+
+env PATH={{ virtualenvdir }}/bin
+chdir {{ project_dir }}
+exec uwsgi --ini {{ uwsgi_ini }}
+{% endraw %}
