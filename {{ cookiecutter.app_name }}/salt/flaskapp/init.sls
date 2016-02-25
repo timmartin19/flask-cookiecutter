@@ -45,6 +45,13 @@ create-virtualenv:
     - context:
       config_file: {{ app.config_file }}
 
+{{ app.name }}-config:
+  file.managed:
+    - name: {{ app.config_file }}
+    - source: salt://flaskapp/templates/appconfig.jinja
+    - template: jinja
+    - user: {{ common.user }}
+
 wsgi-upstart-conf:
   file.managed:
     - name: {{ app.upstart_conf }}
@@ -68,5 +75,8 @@ install-package:
       - pip: create-virtualenv
     - bin_env: {{ app.virtualenvdir }}
 
-
+{{ app.name }}:
+  service.running:
+    - require:
+      - pip: install-package
 {% endraw %}
